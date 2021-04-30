@@ -7,24 +7,23 @@ public class MovingBarScript : MonoBehaviour
     public float speed = 1f;
 
     float movment;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    float sideLimmit = 2.3f;
 
     // Update is called once per frame
     void Update()
     {
+        //moving the bar with the arrow keys
         movment = Input.GetAxisRaw("Horizontal");
         this.transform.Translate(new Vector3(movment * speed * Time.deltaTime, 0, 0));
-        if (transform.position.x > 2)
+
+        //keep the bar from moving outside the map
+        if (transform.position.x > sideLimmit)
         {
-            transform.position = new Vector2(2.3f, transform.position.y);
+            transform.position = new Vector2(sideLimmit, transform.position.y);
         }
-        if (transform.position.x < -2)
+        if (transform.position.x < -sideLimmit)
         {
-            transform.position = new Vector2(-2.3f, transform.position.y);
+            transform.position = new Vector2(-sideLimmit, transform.position.y);
         }
     }
 }

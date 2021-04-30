@@ -20,9 +20,11 @@ public class GameManager : MonoBehaviour
     {
         points = 0;
         life = 5;
+        //the total points the player need to collect to win
         totalBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
     }
 
+    //add point to the player and finish the game if won
     public void AddPoints(int pointsToAdd)
     {
         points = points + pointsToAdd;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //remove a life and finish the game if lost
     public void RemoveLife(int lifeToRemove)
     {
         life = life - lifeToRemove;

@@ -9,7 +9,6 @@ public class BallScript : MonoBehaviour
 
     bool isStarting;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +18,20 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //start the round
         if (Input.GetKeyDown(KeyCode.Space) && isStarting)
         {
             StartBallMovement();
             isStarting = false;
         }
+
+        //die - help for end cases when the ball is too slow
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             BallDie();
         }
-        //fix movment in only one direction
+
+        //fix movment so the ball's velocity wont be only on the x or the y 
         if (GetComponent<Rigidbody2D>().velocity.x < 0.1f && GetComponent<Rigidbody2D>().velocity.x > -0.1f && isStarting == false)
         {
             this.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 10);
@@ -39,6 +42,7 @@ public class BallScript : MonoBehaviour
         }
     }
 
+    //give the ball a random force to the right or the left
     void StartBallMovement()
     {
         this.transform.SetParent(null);
